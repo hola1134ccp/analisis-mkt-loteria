@@ -923,10 +923,10 @@ window.addEventListener('scroll',()=>{const b=$('#toTop'); if(b) b.classList.tog
 document.addEventListener('DOMContentLoaded',()=>{ init(); tableFilters(); kpiRings(); countUp(); const b=$('#toTop'); if(b) b.onclick=()=>window.scrollTo({top:0,behavior:'smooth'}); });
 })();
 </script><script>
-(function(){const H="a2c0b7da8a8a3e6e6683ba5b2d23796a471ef90b529e36765d972ca4e32fa35e";const g=document.getElementById('gate');if(!g)return;document.body.classList.add('locked');
+(function(){const H=["a2c0b7da8a8a3e6e6683ba5b2d23796a471ef90b529e36765d972ca4e32fa35e","187ca203d875397577c3ccdfb22f7a64a12b2229b3bac6b23851ce3dbcecea62","efe39121e009774e4e0a7d08bd27ac9f04af91327e486c7450ec272db9278bfe"];const g=document.getElementById('gate');if(!g)return;document.body.classList.add('locked');
 async function sha(s){const b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return [...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,'0')).join('');}
 function open(){document.body.classList.remove('locked');g.remove();try{sessionStorage.setItem('lb_ok','1')}catch(e){} window.dispatchEvent(new Event('resize'));}
 try{if(sessionStorage.getItem('lb_ok')==='1'){open();return;}}catch(e){}
-document.getElementById('gform').addEventListener('submit',async ev=>{ev.preventDefault();const u=document.getElementById('gu').value.trim().toLowerCase();const p=document.getElementById('gp').value;const err=document.getElementById('gerr');if(!window.crypto||!crypto.subtle){err.textContent='Este navegador no permite validar el acceso. Use una conexión https.';return;}const ok=(await sha(u+':'+p))===H;if(ok)open();else{err.textContent='Usuario o clave incorrectos.';document.getElementById('gp').value='';document.getElementById('gp').focus();}});
+document.getElementById('gform').addEventListener('submit',async ev=>{ev.preventDefault();const u=document.getElementById('gu').value.trim().toLowerCase();const p=document.getElementById('gp').value;const err=document.getElementById('gerr');if(!window.crypto||!crypto.subtle){err.textContent='Este navegador no permite validar el acceso. Use una conexión https.';return;}const ok=H.includes(await sha(u+':'+p));if(ok)open();else{err.textContent='Usuario o clave incorrectos.';document.getElementById('gp').value='';document.getElementById('gp').focus();}});
 })();
 </script></body></html>
